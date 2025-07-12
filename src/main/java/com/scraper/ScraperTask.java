@@ -20,10 +20,10 @@ public class ScraperTask implements  Runnable {
         try {
             Document doc = Jsoup.connect(url)
                     .userAgent("Mozilla/5.0")
-                    .timeout(5000)
+                    .timeout(10_000)
                     .get();
-            String title = doc.selectFirst("h1.product-title").text();
-            String price = doc.selectFirst("span.price").text();
+            String title = doc.selectFirst("h1").text();
+            String price = doc.selectFirst("p.price_color").text();
 
             Product product = new Product(title, price);
 
